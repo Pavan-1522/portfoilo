@@ -10,12 +10,27 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="main.css">
   <title> Portfolio</title>
+  <script>
+    function confirmDownload(event) {
+        event.preventDefault(); // Prevent the default action of the link
+        if (confirm("Do you want to download the resume?")) {
+            // Create an invisible link to download the file
+            var link = document.createElement('a');
+            link.href = event.target.href;
+            link.download = event.target.href.split('/').pop();
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    }
+</script>   
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" style="font-family: 'Wittgenstein'; font-size: 22px;" href="#">Portfolio</a>
+    <a class="navbar-brand" style="font-family: 'Wittgenstein'; font-size: 22px; "  href="#">Portfolio</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -25,7 +40,7 @@
           <a class="nav-link active" aria-current="page" href="#home">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="madeti pavan kumar resume 2024.pdf" download="resume">Resume</a>
+            <a class="nav-link" href="madeti pavan kumar resume 2024.pdf" onclick="confirmDownload(event)">Resume</a>
           </li>
         <li class="nav-item">
           <a class="nav-link" href="#service">Services</a>

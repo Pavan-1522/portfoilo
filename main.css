@@ -14,7 +14,12 @@ body {
     border: #ffffff 1px solid;
     margin-bottom: 5px;
 }
-.navbar-brand,
+.navbar-brand{
+    color: #38c172 ;
+    font-weight: 1000;
+    font-size: 25px;
+    padding-left: 40px;
+}
 .nav-link {
     color: #ffffff !important; /* White text color for navbar links and brand */
 }
