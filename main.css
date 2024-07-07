@@ -292,6 +292,8 @@ body {
 }
 /* projects css end */
 
+/* footer css starts */
+
 footer {
     background-color: #1a1a1a; /* Dark background color */
     color: #fff; /* White text color */
@@ -399,3 +401,4 @@ footer {
     }
 }
 
+/* footer css ends */

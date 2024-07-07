@@ -1,0 +1,456 @@
+#include <WiFi.h>
+#include <ESPAsyncWebServer.h>
+#include <ESP32_MailClient.h>
+#include <DHT.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+const char* ssid = "Pavan";
+const char* password = "Pavan123";
+
+#define DHTPIN 2          // Pin where the DHT11 is connected
+#define DHTTYPE DHT11     // DHT11 sensor type
+DHT dht(DHTPIN, DHTTYPE);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+void sendEmailNotification(bool flameDetected);
+void sendEmailNotification(float temperature);
+void sendEmailNotificationVibration(bool vibrationDetected);// Function declaration for sending vibration notification
+void sendEmailNotificationGas(int gasdetected);
+const char* emailSubjectGas = "Gas Detected!";
+const char* emailBodyGas = "Gas Detected! Dangerous gas levels detected! Take necessary precautions.";
+
+const char* emailSenderAccount = "homemoniteringsystem@gmail.com";
+const char* emailSenderPassword = "dsivznmdtvpcazjp";
+const char* smtpServer = "smtp.gmail.com";
+const int smtpServerPort = 465;
+const char* emailSubject = "ALERT! High Temperature";
+const int VIBRATION_PIN = 5;  // Pin connected to the vibration sensor
+const int gasSensorPin = 35; // Analog pin for MQ2 gas sensor
+const int threshold = 2500; // Adjust the threshold as needed
+const int greenLedPin = 4; // Pin for green LED
+const int redLedPin = 15;   // Pin for red LED
+
+String pumpStatus; // Initialize pump status
+String vibrationStatus = "LOW"; // Initialize vibration status
+int moistureLevel = 0; // Initialize moisture level
+const int flameDigitalPin = 34;  // Replace with the actual digital pin connected to the flame sensor
+bool flameDetected = false;
+float thresholdValue = 35.0;
+const int moisturePin = 32;   // Replace with the actual analog pin connected to the moisture sensor
+const int pumpPin = 12;       // Replace with the actual digital pin connected to the water pump
+int moistureThreshold = 3000;  // Adjust this threshold based on your moisture sensor
+string gasStatus;
+
+AsyncWebServer server(80);
+
+String html = R"(
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Monitoring System</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff8c00, #ff007f); /* Gradient background */
+            color: #ffffff; /* Text color */
+        }
+
+        .container {
+            margin: 20px;
+            text-align: center;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.7); /* Navbar background color with transparency */
+            height: 70px;
+            border: 1px solid white;
+        }
+
+        .left_bar, .right_bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .a-element {
+            padding: 10px;
+            text-decoration: none;
+            margin: 2.5px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out; /* Smooth color transition */
+        }
+
+        .a-element:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white on hover */
+        }
+
+        /* Info section styles */
+        .info-section {
+            margin-bottom: 30px;
+        }
+
+        /* Sensor data styles */
+        .sensor-data {
+            font-size: 35px;
+            margin-top: 20px;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                height: auto;
+            }
+
+            .right_bar {
+                margin-top: 10px;
+            }
+        }
+
+        /* Keyframe animation for temperature */
+        @keyframes alertAnimation {
+            0%, 100% {
+                background-color: transparent;
+            }
+            50% {
+                background-color: #ff0000; /* Red */
+            }
+        }
+
+        /* Apply animation to temperature */
+        #temperature {
+            animation: alertAnimation 2s infinite;
+            border-radius: 5px;
+        }
+
+        .guide-name {
+            color: #0af7ff; /* OrangeRed */
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="left_bar">
+            <h3 class="title">Home Monitoring System</h3>
+        </div>
+        <div class="right_bar">
+            <a href="https://bit.ly/homemoniteringsystem" class="a-element" target="_blank">Home</a>
+            <a href="https://pavan-1522.github.io/home-monitering_system/about.html" class="a-element" target="_blank">About</a>
+            <a href="https://pavan-1522.github.io/home-monitering_system/service.html" class="a-element" target="_blank">Our Project</a>
+            <a href="https://bit.ly/esp32home" class="a-element" target="_blank">Panel</a>
+            <a href="https://pavan-1522.github.io/home-monitering_system/why.html" class="a-element" target="_blank">Why This</a>
+            <a href="https://pavan-1522.github.io/home-monitering_system/team.html" class="a-element" target="_blank">Our Team</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Comprehensive Home Monitoring System with Environmental Sensing using ESP32</h1>
+        <div class="info-section">
+            <h2 id="title">Chaitanya Engineering College</h2>
+            <img src="https://res.cloudinary.com/dudz8iroq/image/upload/v1709373870/CECLogo_p0uu7w.jpg" alt="no image">
+            <h3 id="depart">Department of Electronics and Communication Engineering</h3>
+            <h4 id="guide">Under The Guidance Of: <span class="guide-name">Ms. B. Radha Devi, M.Tech</span></h4>
+        </div>
+        <hr>
+        <!-- Your container HTML -->
+        <div class="sensor-data">
+            <p>Temperature: <span id="temperature"> %TEMPERATURE% </span> &deg;C</p>
+            <p>Humidity: <span id="humidity">%humidity%</span> %</p>
+            <p>Flame Detected: <span id="flameStatus"> %FLAME% </span></p>
+            <p>Moisture Level: <span id="moistureStatus">%MOISTURE%</span></p>
+            <p>Water Pump: <span id="pumpStatus">%PUMP%</span></p>
+            <p>Earthquake Status: <span id="earthquakeStatus">%VIBRATION%</span></p>
+            <p>Gas Sensor Status: <span id="gasSensorStatus">%GAS%</span></p>
+        </div>
+    </div>
+    <script>
+      function refreshPage() {
+            setTimeout(() => {
+                location.reload();
+            }, 1000); // Refresh every 1000 milliseconds (1 second)
+        }
+
+        // Call the function initially
+        refreshPage();
+    </script>
+</body>
+</html>
+)";
+
+String processor(const String& var) {
+    if (var == "TEMPERATURE") {
+        // Read the temperature from the DHT sensor
+        float temperature = dht.readTemperature();
+        // Convert temperature to string with two decimal places
+        return String(temperature, 2);
+    }
+    // Add more variables as needed
+    return String();
+}
+
+void setup() {
+    Serial.begin(115200);
+
+    // Connect to Wi-Fi
+    WiFi.begin(ssid, password);
+    while (WiFi.status() != WL_CONNECTED) {
+         delay(500);
+         digitalWrite(greenLedPin, LOW); // Ensure green LED is off while connecting
+         digitalWrite(redLedPin, HIGH);  // Turn on red LED to indicate no connection
+         delay(500);
+         digitalWrite(redLedPin, LOW);   // Turn off red LED
+         Serial.println("Connecting to WiFi...");
+        }
+    Serial.println("Connected to WiFi");
+    digitalWrite(greenLedPin, HIGH);
+    Serial.println(WiFi.localIP());
+
+    dht.begin();
+    pinMode(flameDigitalPin, INPUT);
+    pinMode(moisturePin, INPUT);
+    pinMode(pumpPin, OUTPUT);
+    digitalWrite(pumpPin, LOW);
+    pinMode(gasSensorPin, INPUT);
+    pinMode(VIBRATION_PIN, INPUT); // Set the vibration sensor pin as input
+    pinMode(greenLedPin, OUTPUT);
+    pinMode(redLedPin, OUTPUT);
+
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
+    String dynamicHtml = html;
+    dynamicHtml.replace("%TEMPERATURE%", String(dht.readTemperature(), 2).c_str());
+    dynamicHtml.replace("%humidity%", String(dht.readHumidity()).c_str()); // Update humidity value
+    dynamicHtml.replace("%MOISTURE%", String(moistureLevel).c_str());
+    dynamicHtml.replace("%GAS%", String(gasStatus.c_str()));
+    dynamicHtml.replace("%FLAME%", flameDetected ? "Yes" : "No");
+    dynamicHtml.replace("%VIBRATION%", vibrationStatus.c_str());
+    dynamicHtml.replace("%PUMP%", pumpStatus.c_str());
+    request->send(200, "text/html", dynamicHtml);
+});
+
+
+    server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
+        // Serve HTML page
+        request->send(200, "text/html", html);
+    });
+
+    server.begin();
+  lcd.begin();
+  lcd.backlight();
+
+  lcd.print("ESP32 Monitoring");
+  lcd.setCursor(0, 1);
+  lcd.print("System");
+  delay(2000);
+  lcd.clear();
+}
+
+void loop() {
+   // checking wifi status
+  if (WiFi.status() != WL_CONNECTED) {
+    // Wi-Fi disconnected, turn on red LED
+    digitalWrite(greenLedPin, LOW);
+    digitalWrite(redLedPin, HIGH);
+  } else {
+    // Wi-Fi connected, turn off red LED
+    digitalWrite(redLedPin, LOW);
+  }
+    // Reading sensor data
+    float temperature = dht.readTemperature();
+    moistureLevel = analogRead(moisturePin);
+    int gasValue = analogRead(gasSensorPin);
+
+    // Check if temperature exceeds the threshold value
+    if (temperature > thresholdValue) {
+        // Send email notification
+        sendEmailNotification(temperature);
+    }
+
+    delay(1000); // Wait for 1 second before reading sensor again
+
+    flameDetected = digitalRead(flameDigitalPin) == LOW;
+
+    delay(500);  // delay half second to read sensor data
+    if (flameDetected) {
+        sendEmailNotification(flameDetected);
+    }
+    else {
+        Serial.println("No flame detected");
+    }
+
+    // Moisture sensor starts
+    moistureLevel = analogRead(moisturePin);
+    if (moistureLevel > moistureThreshold) {
+        // Turn on the water pump
+        digitalWrite(pumpPin, HIGH);
+        pumpStatus = "On";
+    }
+    else {
+        // Turn off the water pump
+        digitalWrite(pumpPin, LOW);
+        pumpStatus = "Off";
+    }
+
+    delay(1000);  // Adjust the delay as needed
+
+    // Vibration sensor starts
+    bool vibrationDetected = digitalRead(VIBRATION_PIN) == HIGH;
+    if (vibrationDetected) {
+        // Send email notification for vibration detected
+        sendEmailNotificationVibration(vibrationDetected);
+        vibrationStatus = "HIGH";
+    }
+    else {
+        vibrationStatus = "LOW";
+    }
+
+    // MQ2 sensor starts
+    Serial.println("Gas sensor value: " + String(gasValue));
+    int gasDetected = gasValue > threshold;
+    if (gasValue > threshold) {
+        gasStatus="detected";
+        sendEmailNotificationGas(gasDetected);
+        Serial.println("Email sent!");
+        delay(5000); // Wait for a minute to avoid sending multiple emails in a short time
+    }else{
+      gasStatus="not deteceetd";
+    }
+
+
+      // Display flame status
+  lcd.setCursor(0, 0);
+  lcd.print("Temp: ");
+  lcd.print(temperature);
+  lcd.print("c");
+
+  // Display temperature
+  lcd.setCursor(0, 1);
+  lcd.print("Hum: ");
+  lcd.print(dht.readHumidity());
+  lcd.print(" C");
+
+  delay(4000);
+  lcd.clear();
+
+  // Display humidity
+  lcd.setCursor(0, 0);
+  lcd.print("Flame: ");
+  lcd.print(flameDetected ? "Yes" : "No");
+
+  // Display earthquake status
+  lcd.setCursor(0, 1);
+  lcd.print("Earthquake: ");
+  lcd.print(vibrationStatus);
+
+  delay(4000);
+  lcd.clear();
+
+  // Display soil moisture
+  lcd.setCursor(0, 0);
+  lcd.print("Soil data: ");
+  lcd.print(moistureLevel);
+
+  // Display pump status
+  lcd.setCursor(0, 1);
+  lcd.print("Pump: ");
+  lcd.print(pumpStatus);
+
+  delay(4000);
+  lcd.clear();
+
+    // Display MQ2 value
+  lcd.setCursor(0, 0);
+  lcd.print("Gas data: ");
+  lcd.print(gasValue);
+
+  // Display pump status
+  lcd.setCursor(0, 1);
+  // lcd.print("ip: ");
+  lcd.print(WiFi.localIP());
+  delay(4000);
+  lcd.clear();
+}
+
+void sendEmailNotification(bool flameDetected) {
+    SMTPData smtpData;
+    smtpData.setLogin(smtpServer, smtpServerPort, emailSenderAccount, emailSenderPassword);
+    smtpData.setSender("ESP32_Fire_Alert", emailSenderAccount);
+    smtpData.setPriority("High");
+    smtpData.setSubject(emailSubject);
+    String emailMessage = "Flame detected, hurry up DIAL: 101 for help";
+    smtpData.setMessage(emailMessage, true);
+    smtpData.addRecipient("pavankumarmadeti143@gmail.com");
+    if (!MailClient.sendMail(smtpData)) {
+        Serial.println("Error sending Email, " + MailClient.smtpErrorReason());
+    }
+    else {
+        Serial.println("Email sent successfully for fire");
+    }
+    smtpData.empty();
+}
+
+void sendEmailNotification(float temperature) {
+    SMTPData smtpData;
+    smtpData.setLogin(smtpServer, smtpServerPort, emailSenderAccount, emailSenderPassword);
+    smtpData.setSender("ESP32_Temperature_Alert", emailSenderAccount);
+    smtpData.setPriority("High");
+    smtpData.setSubject(emailSubject);
+    String emailMessage = "High temperature alert! Current temperature is " + String(temperature) + " °C.";
+    smtpData.setMessage(emailMessage, true);
+    smtpData.addRecipient("pavankumarmadeti143@gmail.com");
+    if (!MailClient.sendMail(smtpData)) {
+        Serial.println("Error sending Email, " + MailClient.smtpErrorReason());
+    }
+    else {
+        Serial.println("Email sent successfully for temperature");
+    }
+    smtpData.empty();
+}
+
+void sendEmailNotificationVibration(bool vibrationDetected) {
+    SMTPData smtpData;
+    smtpData.setLogin(smtpServer, smtpServerPort, emailSenderAccount, emailSenderPassword);
+    smtpData.setSender("ESP32_Vibration_Alert", emailSenderAccount);
+    smtpData.setPriority("High");
+    smtpData.setSubject("ALERT! Vibration Detected");
+    String emailMessage = "Vibration detected! Check the home monitoring system for details.";
+    smtpData.setMessage(emailMessage, true);
+    smtpData.addRecipient("pavankumarmadeti143@gmail.com");
+    if (!MailClient.sendMail(smtpData)) {
+        Serial.println("Error sending Email, " + MailClient.smtpErrorReason());
+    }
+    else {
+        Serial.println("Email sent successfully for vibration");
+    }
+    smtpData.empty();
+}
+
+void sendEmailNotificationGas(int gasDetected) {
+    SMTPData smtpData;
+    smtpData.setLogin(smtpServer, smtpServerPort, emailSenderAccount, emailSenderPassword);
+    smtpData.setSender("ESP32_GAS_Alert", emailSenderAccount);
+    smtpData.setPriority("High");
+    smtpData.setSubject("ALERT! GAS Detected");
+    String emailMessage = "GAS detected! Check the home monitoring system for details.";
+    smtpData.setMessage(emailMessage, true);
+    smtpData.addRecipient("pavankumarmadeti143@gmail.com");
+    if (!MailClient.sendMail(smtpData)) {
+        Serial.println("Error sending Email, " + MailClient.smtpErrorReason());
+    }
+    else {
+        Serial.println("Email sent successfully for GAS");
+    }
+    smtpData.empty();
+}
