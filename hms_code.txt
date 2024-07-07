@@ -21,7 +21,7 @@ const char* emailSubjectGas = "Gas Detected!";
 const char* emailBodyGas = "Gas Detected! Dangerous gas levels detected! Take necessary precautions.";
 
 const char* emailSenderAccount = "homemoniteringsystem@gmail.com";
-const char* emailSenderPassword = "dsivznmdtvpcazjp";
+const char* emailSenderPassword = "password here";
 const char* smtpServer = "smtp.gmail.com";
 const int smtpServerPort = 465;
 const char* emailSubject = "ALERT! High Temperature";
