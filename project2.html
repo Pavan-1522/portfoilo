@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactless RFID Payment System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #f8f9fa;
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+    background-color: #000000; /* Black background for navbar */
+    border: #ffffff 1px solid;
+    margin-bottom: 5px;
+}
+.nav-text:hover{
+    color: #d5f7e3;
+}
+.navbar-brand{
+    color: #38c172 ;
+    font-weight: 1000;
+    font-size: 25px;
+    padding-left: 40px;
+}
+.nav-link {
+    color: #ffffff !important; /* White text color for navbar links and brand */
+    text-decoration: none;
+}
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1); /* White border for the toggler */
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* White hamburger menu */
+}
+.nav-item{
+    margin-left: 15px;
+    font-size: 18px;
+}
+.nav-item:hover{
+    border-bottom: 1px solid rgb(41, 212, 107);
+}
+
+        h1, h2 {
+            color: #00aaff;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        section {
+            padding: 30px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            animation: fadeInUp 1s ease-in-out forwards;
+        }
+
+        nav.navbar {
+            margin-bottom: 30px;
+        }
+
+        footer {
+            margin-top: 50px;
+            background: #0d0d0d;
+            padding: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        ul li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: #00aaff;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .btn-beautiful {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: linear-gradient(135deg, #ff6a00, #ee0979);
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .btn-beautiful::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .btn-beautiful:hover {
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, #ee0979, #ff6a00);
+        }
+
+        .btn-beautiful:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .btn-beautiful span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #00aaff;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .btn-beautiful {
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+        }
+        footer {
+    background-color: #1a1a1a; /* Dark background color */
+    color: #fff; /* White text color */
+    padding: 40px 20px;
+    font-family: 'Rancho', sans-serif; /* Use 'Rancho' font family */
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1 1 300px;
+    margin: 20px; /* Adds space between the sections */
+    text-align: center; /* Center-align text */
+}
+.footer-section p {
+    font-size: 25px;
+}
+.footer-section p:hover {
+    color: #31754d;
+}
+.footer-section h3 {
+    font-size: 34px;
+    margin-bottom: 10px;
+    color: #38c172; /* Green accent color */
+}
+
+.footer-center ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-center ul li {
+    margin: 5px 0;
+}
+
+.footer-center ul li a {
+    color: #d5f7e3; /* Green link color */
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 25px;
+}
+
+.footer-center ul li a:hover {
+    color: #2b956d; /* Darker green hover color */
+}
+
+.social-icons {
+    display: flex;
+    flex-direction: column; /* Display icons and names vertically */
+    align-items: center; /* Center items horizontally */
+    margin-top: 10px;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px; /* Adjust width as needed */
+    height: 40px;
+    border-radius: 4px;
+    margin: 5px 0; /* Adjust vertical margin */
+    background-color: #38c172; /* Green background color */
+    color: #fff; /* White text color */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s;
+    font-size: 18px;
+}
+
+.social-icons a:hover {
+    background-color: #2b956d; /* Darker green hover color */
+}
+
+.social-icons i {
+    font-size: 24px;
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.social-icons span {
+    font-size: 20px; /* Adjust font size as needed */
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #ccc; /* Lighter text color */
+}
+.insta{
+  color: red;
+}
+.face{
+  color: blue;
+}
+.git{
+  color: #000000;
+}
+.you{
+  color: red;
+}
+.link{
+  color: blue;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin: 10px 0; /* Adjust margin for smaller screens */
+    }
+}
+
+/* footer css ends */
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand nav-text" style="font-family: 'Wittgenstein'; font-size: 22px;" href="#">Portfolio</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html#home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="madeti pavan kumar resume 2024.pdf" onclick="confirmDownload(event)">Resume</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html#service">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html#skills">Skills</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html#projects">Projects</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <div class="text-center mb-5">
+            <h1>Contactless RFID Payment System</h1>
+            <p class="lead">An innovative solution for seamless, contactless transactions using RFID technology.</p>
+        </div>
+
+        <!-- Overview Section -->
+        <section id="overview" class="mb-5">
+            <h2>Overview</h2>
+            <p>The Contactless RFID Payment System is designed to simplify transactions using RFID technology. It allows users to make payments effortlessly by scanning an RFID card, deducting the amount, and updating transaction details in real-time.</p>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="mb-5">
+            <h2>How It Works</h2>
+            <ol>
+                <li><strong>RFID Scanning:</strong> The system reads the unique ID from the RFID card when scanned.</li>
+                <li><strong>Payment Deduction:</strong> A predefined amount is deducted from the card's balance.</li>
+                <li><strong>Balance Display:</strong> The remaining balance is displayed on the 16x2 LCD screen.</li>
+                <li><strong>Transaction Logging:</strong> Transaction details are logged into a Google Sheet.</li>
+                <li><strong>Web Interface:</strong> Manage product costs, view payment statuses, and perform secure withdrawals via a web interface.</li>
+            </ol>
+        </section>
+
+        <!-- Applications Section -->
+        <section id="applications" class="mb-5">
+            <h2>Applications</h2>
+            <ul>
+                <li>Retail Stores</li>
+                <li>Cafeterias</li>
+                <li>Libraries</li>
+                <li>Parking Lots</li>
+            </ul>
+        </section>
+
+        <!-- Technologies Used Section -->
+        <section id="technologies" class="mb-5">
+            <h2>Technologies Used</h2>
+            <ul>
+                <li>Embedded C</li>
+                <li>HTML, CSS, JavaScript</li>
+                <li>Bootstrap</li>
+                <li>Firebase</li>
+                <li>Google Sheets API</li>
+            </ul>
+        </section>
+
+        <!-- Components Section -->
+        <section id="components" class="mb-5">
+            <h2>Components</h2>
+            <ul>
+                <li>ESP32 Microcontroller</li>
+                <li>RFID Reader and Tags</li>
+                <li>16x2 LCD Display</li>
+                <li>Push Buttons</li>
+                <li>Power Supply</li>
+                <li>Jumper Wires and Breadboard</li>
+            </ul>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="benefits" class="mb-5">
+            <h2>Benefits</h2>
+            <ul>
+                <li>Seamless Transactions</li>
+                <li>Real-Time Logging</li>
+                <li>Security</li>
+                <li>Scalable</li>
+            </ul>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="mb-5 text-center">
+            <h2>Gallery</h2>
+            <h4>For complete details visit the website now</h4>
+            <a href="#" class="btn-beautiful mt-4"><span>Click Me</span></a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left footer-section">
+                <h3>Contact Information</h3>
+                <p>Email: pavankumarmadeti143@gmail.com</p>
+                <p>Phone: +1234567890</p>
+            </div>
+            <div class="footer-center footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#service">Services</a></li>
+                    <li><a href="index.html#foot">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-right footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/its___me.___pavan.__/" target="_blank" title="Instagram"><i class="fa fa-instagram insta"></i><span>Instagram</span></a>
+                    <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook face"></i><span>Facebook</span></a>
+                    <a href="https://www.youtube.com/channel/UCMHiDi5iBOpk6MvHXKahYRg" target="_blank" title="YouTube">
+                        <i class="fa fa-youtube you"></i><span>YouTube</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/pavan-kumar-madeti-029135217/" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i><span class="link">LinkedIn</span></a>
+                    <a href="https://github.com/Pavan-1522" target="_blank" title="GitHub"><i class="fa fa-github git"></i><span>GitHub</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Madeti Pavan Kumar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
