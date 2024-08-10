@@ -284,6 +284,21 @@ footer {
     font-size: 18px;
     color: #ccc; /* Lighter text color */
 }
+.insta{
+  color: red;
+}
+.face{
+  color: blue;
+}
+.git{
+  color: #000000;
+}
+.you{
+  color: red;
+}
+.link{
+  color: blue;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
