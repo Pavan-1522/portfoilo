@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegets Electronics</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .navbar-brand img {
+            margin-right: 10px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: slideInDown 1.5s ease-out;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            animation: slideInUp 1.5s ease-out;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+
+        /* Download App Section */
+        .download-section {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .download-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .download-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .download-section .btn-download {
+            background-color: #fff;
+            color: #2575fc;
+            font-weight: bold;
+            border-radius: 50px;
+            padding: 10px 30px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .download-section .btn-download:hover {
+            background-color: #2575fc;
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-section ul {
+            list-style: none;
+            padding: 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-section ul li {
+            margin-bottom: 10px;
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of Bobbili Railway Station
+            const bobbiliStation = { lat: 18.5730, lng: 83.3592 };
+            // The map, centered at Bobbili Railway Station
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: bobbiliStation,
+            });
+            // The marker, positioned at Bobbili Railway Station
+            const marker = new google.maps.Marker({
+                position: bobbiliStation,
+                map: map,
+            });
+        }
+
+        // Load the map after the page loads
+        window.onload = initMap;
+    </script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="Elegets Electronics" width="30" height="24" class="d-inline-block align-text-top">
+                Elegets Electronics
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Welcome to Elegets Electronics</h1>
+            <p>Your one-stop solution for electronic components and projects.</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2>About Elegets Electronics</h2>
+            <p>Elegets Electronics is an innovative platform that offers a wide range of electronic components, tutorials, and project ideas.</p>
+            <p>Whether you are a hobbyist or a professional, we provide everything you need to bring your electronic projects to life.</p>
+            <p>Our app makes it easy to browse components, learn about their functions, and integrate them into your designs.</p>
+            <p>Join our community of electronics enthusiasts and start building your projects with ease!</p>
+        </div>
+    </section>
+
+    <!-- Download App Section -->
+    <section class="download-section">
+        <div class="container">
+            <h2>Download the Elegets Electronics App</h2>
+            <p>Get our app to access our extensive library of electronic components, tutorials, and project ideas right from your mobile device.</p>
+            <a href="#" class="btn btn-download">Download Now</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>We'd love to hear from you! Reach out to us through the following contact details:</p>
+            <ul>
+                <li><strong>Email:</strong> contact@elegets.com</li>
+                <li><strong>Phone:</strong> +123 456 7890</li>
+                <li><strong>Address:</strong> 123 Electronics Ave, Tech City, Country</li>
+            </ul>
+            <div id="map"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Elegets Electronics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
