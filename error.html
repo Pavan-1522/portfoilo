@@ -1,95 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho&effect=fire-animation">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="project1.css">
-    <title>404 Not Found</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Page Not Found | Pavan Kumar Madeti</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    :root {
+      --primary: #00e676; /* IoT green */
+      --primary-dark: #00c853;
+      --secondary: #2979ff; /* Tech blue */
+      --dark: #121212;
+      --darker: #0a0a0a;
+      --light: #f5f5f5;
+      --gray: #2d2d2d;
+      --accent: #ff9100; /* Orange accent */
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--gray);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 5px;
+    }
+    
+    /* Navbar */
+    .navbar {
+      background-color: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 230, 118, 0.2);
+      padding: 15px 0;
+      transition: all 0.3s ease;
+    }
+    
+    .navbar.scrolled {
+      padding: 10px 0;
+      background-color: rgba(10, 10, 10, 0.95);
+    }
+    
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary) !important;
+      display: flex;
+      align-items: center;
+    }
+    
+    .navbar-brand i {
+      margin-right: 10px;
+      font-size: 1.5rem;
+    }
+    
+    /* 404 Content */
+    .error-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 50px 20px;
+    }
+    
+    .circuit-board {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.05;
+      background-image: 
+        linear-gradient(to right, var(--primary) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--primary) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+    
+    .error-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .error-code {
+      font-size: 10rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+    
+    .error-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--light);
+    }
+    
+    .error-message {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn-primary-custom {
+      background-color: var(--primary);
+      color: var(--dark);
+      border: none;
+      padding: 12px 30px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 230, 118, 0.3);
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-primary-custom:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 230, 118, 0.4);
+      color: var(--dark);
+    }
+    
+    /* Glow Effects */
+    .glow {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 230, 118, 0.3) 0%, rgba(0, 230, 118, 0) 70%);
+      filter: blur(10px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .glow-1 {
+      top: 20%;
+      left: 10%;
+      width: 200px;
+      height: 200px;
+    }
+    
+    .glow-2 {
+      bottom: 15%;
+      right: 10%;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(41, 121, 255, 0.3) 0%, rgba(41, 121, 255, 0) 70%);
+    }
+    
+    /* IoT Device Animation */
+    .iot-device {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: rgba(0, 230, 118, 0.1);
+      border: 2px solid var(--primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse 4s infinite ease-in-out;
+      z-index: 0;
+    }
+    
+    .iot-device i {
+      color: var(--primary);
+      font-size: 2rem;
+    }
+    
+    .iot-device-1 {
+      top: 30%;
+      right: 15%;
+    }
+    
+    .iot-device-2 {
+      bottom: 25%;
+      left: 15%;
+      animation-delay: 1s;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+    }
+    
+    /* Connection Lines */
+    .connection-line {
+      position: absolute;
+      background-color: var(--primary);
+      z-index: 0;
+      opacity: 0.3;
+    }
+    
+    .line-1 {
+      top: 35%;
+      left: 20%;
+      width: 100px;
+      height: 2px;
+      transform: rotate(45deg);
+    }
+    
+    .line-2 {
+      bottom: 30%;
+      right: 20%;
+      width: 150px;
+      height: 2px;
+      transform: rotate(-30deg);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--darker);
+      padding: 20px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+    
+    .copyright {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .error-code {
+        font-size: 8rem;
+      }
+      
+      .error-title {
+        font-size: 2rem;
+      }
+      
+      .error-message {
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .error-code {
+        font-size: 6rem;
+      }
+      
+      .error-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <a class="navbar-brand nav-text" style="font-family: 'Wittgenstein'; font-size: 22px;" href="#">Portfolio</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="madeti pavan kumar resume 2024.pdf" onclick="confirmDownload(event)">Resume</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="index.html#service">Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="index.html#skills">Skills</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="index.html#projects">Projects</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-    </nav>
-    <br>
-    
-    <!-- 404 Page Content -->
-    <div class="container text-center">
-        <h1 class="display-1">404</h1>
-        <h2>Page Not Found</h2>
-        <p class="lead">Sorry, the page you are looking for does not exist. You can go back to the <a href="index.html">home page</a>.</p>
-        <br>
-        <!-- <img src="404_image_url" alt="404 Image" class="img-fluid" style="max-width: 50%;"> -->
-        <h2>ERRoR !</h2>
-        <br><br>
-        <a href="index.html" class="btn btn-primary">Go Back to Home</a>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-microchip"></i> Pavan Kumar Madeti
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    
-    <!-- Footer -->
-    <footer class="mt-5">
-        <div class="footer-content">
-            <div class="footer-left footer-section">
-                <h3>Contact Information</h3>
-                <p>Email: pavankumarmadeti143@gmail.com</p>
-                <p>Phone: +1234567890</p>
-            </div>
-            <div class="footer-center footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                  <li><a href="index.html">Home</a></li>
-                  <li><a href="index.html#projects">Projects</a></li>
-                  <li><a href="index.html#skills">Skills</a></li>
-                  <li><a href="index.html#service">Services</a></li>
-                  <li><a href="index.html#foot">Contact</a></li>
-              </ul>
-            </div>
-            <div class="footer-right footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/its___me.___pavan.__/" target="_blank" title="Instagram"><i class="fa fa-instagram"></i><span>Instagram</span></a>
-                    <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i><span>Facebook</span></a>
-                    <a href="https://www.youtube.com/channel/UCMHiDi5iBOpk6MvHXKahYRg" target="_blank" title="YouTube">
-                        <i class="fa fa-youtube"></i><span>YouTube</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/pavan-kumar-madeti-029135217/" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i><span>LinkedIn</span></a>
-                    <a href="https://github.com/Pavan-1522" target="_blank" title="GitHub"><i class="fa fa-github"></i><span>GitHub</span></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Madeti Pavan Kumar. All rights reserved.</p>
-        </div>
-    </footer>
+  </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <!-- 404 Content -->
+  <div class="error-container">
+    <div class="circuit-board"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="iot-device iot-device-1">
+      <i class="fas fa-bug"></i>
+    </div>
+    <div class="iot-device iot-device-2">
+      <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <div class="connection-line line-1"></div>
+    <div class="connection-line line-2"></div>
+    
+    <div class="error-content">
+      <h1 class="error-code animate__animated animate__fadeIn">404</h1>
+      <h2 class="error-title animate__animated animate__fadeIn animate__delay-1s">Page Not Found</h2>
+      <p class="error-message animate__animated animate__fadeIn animate__delay-2s">
+        Oops! The page you're looking for doesn't exist or might have been moved. 
+        Let's get you back on track.
+      </p>
+      <a href="index.html" class="btn btn-primary-custom animate__animated animate__fadeIn animate__delay-3s">
+        <i class="fas fa-home me-2"></i> Return to Homepage
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="copyright">
+        <p>&copy; 2024 Pavan Kumar Madeti. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  
+  <script>
+    // Navbar scroll effect
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > 100) {
+        $('.navbar').addClass('scrolled');
+      } else {
+        $('.navbar').removeClass('scrolled');
+      }
+    });
+  </script>
 </body>
 </html>
