@@ -3,266 +3,1671 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pavan Kumar Madeti | IoT & Embedded Systems Engineer</title>
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho&effect=fire-animation">
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css"> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="main.css">
-  <title> Portfolio</title>
-  <script>
-    function confirmDownload(event) {
-        event.preventDefault(); // Prevent the default action of the link
-        if (confirm("Do you want to download the resume?")) {
-            // Create an invisible link to download the file
-            var link = document.createElement('a');
-            link.href = event.target.href;
-            link.download = event.target.href.split('/').pop();
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00e676; /* IoT green */
+      --primary-dark: #00c853;
+      --secondary: #2979ff; /* Tech blue */
+      --dark: #121212;
+      --darker: #0a0a0a;
+      --light: #f5f5f5;
+      --gray: #2d2d2d;
+      --accent: #ff9100; /* Orange accent */
     }
-</script>   
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--gray);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 5px;
+    }
+    
+    /* Navbar */
+    .navbar {
+      background-color: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 230, 118, 0.2);
+      padding: 15px 0;
+      transition: all 0.3s ease;
+    }
+    
+    .navbar.scrolled {
+      padding: 10px 0;
+      background-color: rgba(10, 10, 10, 0.95);
+    }
+    
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary) !important;
+      display: flex;
+      align-items: center;
+    }
+    
+    .navbar-brand i {
+      margin-right: 10px;
+      font-size: 1.5rem;
+    }
+    
+    .nav-link {
+      color: var(--light) !important;
+      font-weight: 500;
+      margin: 0 10px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .navbar-toggler {
+      border: none;
+      color: var(--light);
+    }
+    
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+    
+    /* Hero Section */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .hero-image {
+      position: relative;
+      z-index: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 230, 118, 0.2);
+      border: 2px solid var(--primary);
+      transition: all 0.5s ease;
+    }
+    
+    .hero-image:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(0, 230, 118, 0.3);
+    }
+    
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .btn-primary-custom {
+      background-color: var(--primary);
+      color: var(--dark);
+      border: none;
+      padding: 12px 30px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 230, 118, 0.3);
+    }
+    
+    .btn-primary-custom:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 230, 118, 0.4);
+    }
+    
+    .btn-outline-custom {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background-color: transparent;
+      padding: 10px 28px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-outline-custom:hover {
+      background-color: var(--primary);
+      color: var(--dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 230, 118, 0.4);
+    }
+    
+    /* Background Animation */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      background-color: var(--primary);
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: float 15s infinite linear;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+      }
+    }
+    
+    /* About Section */
+    #about {
+      padding: 100px 0;
+      background-color: var(--darker);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      text-align: center;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    
+    .about-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .about-content p {
+      margin-bottom: 20px;
+    }
+    
+    .skill-badge {
+      display: inline-block;
+      background-color: rgba(0, 230, 118, 0.1);
+      color: var(--primary);
+      padding: 8px 15px;
+      border-radius: 50px;
+      margin: 5px;
+      font-size: 0.9rem;
+      border: 1px solid var(--primary);
+      transition: all 0.3s ease;
+    }
+    
+    .skill-badge:hover {
+      background-color: var(--primary);
+      color: var(--dark);
+      transform: translateY(-3px);
+    }
+    
+    /* Services Section */
+    #services {
+      padding: 100px 0;
+      background-color: var(--dark);
+      position: relative;
+    }
+    
+    .service-card {
+      background: linear-gradient(145deg, #1a1a1a, #222222);
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.5s ease;
+      border-left: 4px solid var(--primary);
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 230, 118, 0.1) 0%, rgba(41, 121, 255, 0.1) 100%);
+      z-index: 0;
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 230, 118, 0.2);
+    }
+    
+    .service-card:hover::before {
+      opacity: 1;
+    }
+    
+    .service-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      transition: all 0.5s ease;
+    }
+    
+    .service-card:hover .service-icon {
+      transform: scale(1.2);
+    }
+    
+    .service-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--light);
+    }
+    
+    .service-description {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 20px;
+    }
+    
+    /* Skills Section */
+    #skills {
+      padding: 100px 0;
+      background-color: var(--darker);
+    }
+    
+    .skill-category {
+      margin-bottom: 50px;
+    }
+    
+    .skill-category-title {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .skill-category-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--primary);
+    }
+    
+    .skill-item {
+      background-color: var(--gray);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      border-left: 3px solid var(--primary);
+      display: flex;
+      align-items: center;
+    }
+    
+    .skill-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 230, 118, 0.1);
+    }
+    
+    .skill-icon {
+      width: 50px;
+      height: 50px;
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 230, 118, 0.1);
+      border-radius: 10px;
+    }
+    
+    .skill-icon img {
+      max-width: 80%;
+      max-height: 80%;
+    }
+    
+    .skill-name {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .skill-level {
+      height: 5px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+    
+    .skill-level-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 5px;
+    }
+    
+    /* Projects Section */
+    #projects {
+      padding: 100px 0;
+      background-color: var(--dark);
+    }
+    
+    .project-card {
+      background: linear-gradient(145deg, #1a1a1a, #222222);
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.5s ease;
+      position: relative;
+      height: 100%; /* Make all cards same height */
+      display: flex;
+      flex-direction: column;
+      /* min-height: 350px; */
+    }
+    
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 230, 118, 0.1) 0%, rgba(41, 121, 255, 0.1) 100%);
+      z-index: 0;
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 230, 118, 0.2);
+    }
+    
+    .project-card:hover::before {
+      opacity: 1;
+    }
+    
+    .project-image {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s ease;
+    }
+    
+    .project-card:hover .project-image img {
+      transform: scale(1.1);
+    }
+    
+    .project-content {
+      padding: 25px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .project-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--light);
+    }
+    
+    .project-description {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 20px;
+    }
+    
+    .project-tags {
+      margin-bottom: 20px;
+    }
+    
+    .project-tag {
+      display: inline-block;
+      background-color: rgba(0, 230, 118, 0.1);
+      color: var(--primary);
+      padding: 5px 10px;
+      border-radius: 5px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      font-size: 0.8rem;
+    }
+    
+    .project-links a {
+      display: inline-block;
+      margin-right: 10px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .project-links a:hover {
+      color: var(--light);
+    }
+    
+    .project-links a i {
+      margin-right: 5px;
+    }
+    
+    /* Contact Section */
+    #contact {
+      padding: 100px 0;
+      background-color: var(--darker);
+      position: relative;
+    }
+    
+    .contact-info {
+      margin-bottom: 30px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(0, 230, 118, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+    
+    .contact-text {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .contact-text a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-text a:hover {
+      color: var(--light);
+    }
+    
+    .form-control {
+      background-color: #ffffff !important; /* Changed to white */
+      border: 1px solid #e0e0e0;
+      color: var(--dark) !important; /* Dark text for contrast */
+      border-radius: 10px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+      background-color: var(--gray);
+      color: var(--light);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.25rem rgba(0, 230, 118, 0.25);
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--darker);
+      padding: 50px 0 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    
+    .footer-about {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 20px;
+    }
+    
+    .footer-links h5 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+    
+    .social-links a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--light);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background-color: var(--primary);
+      color: var(--dark);
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.5);
+      text-align: center;
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--primary);
+      color: var(--dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 230, 118, 0.3);
+    }
+    
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-5px);
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.3rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.3rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .hero-image {
+        margin-top: 50px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .navbar-brand {
+        font-size: 1.5rem;
+      }
+      
+      .btn-primary-custom, .btn-outline-custom {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    /* Circuit Board Animation */
+    .circuit-board {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.05;
+      background-image: 
+        linear-gradient(to right, var(--primary) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--primary) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+    
+    /* Glow Effects */
+    .glow {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 230, 118, 0.3) 0%, rgba(0, 230, 118, 0) 70%);
+      filter: blur(10px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .glow-1 {
+      top: 20%;
+      left: 10%;
+      width: 200px;
+      height: 200px;
+    }
+    
+    .glow-2 {
+      bottom: 15%;
+      right: 10%;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(41, 121, 255, 0.3) 0%, rgba(41, 121, 255, 0) 70%);
+    }
+    
+    /* IoT Device Animation */
+    .iot-device {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: rgba(0, 230, 118, 0.1);
+      border: 2px solid var(--primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse 4s infinite ease-in-out;
+      z-index: 0;
+    }
+    
+    .iot-device i {
+      color: var(--primary);
+      font-size: 2rem;
+    }
+    
+    .iot-device-1 {
+      top: 30%;
+      right: 15%;
+    }
+    
+    .iot-device-2 {
+      bottom: 25%;
+      left: 15%;
+      animation-delay: 1s;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+    }
+    
+    /* Connection Lines */
+    .connection-line {
+      position: absolute;
+      background-color: var(--primary);
+      z-index: 0;
+      opacity: 0.3;
+    }
+    
+    .line-1 {
+      top: 35%;
+      left: 20%;
+      width: 100px;
+      height: 2px;
+      transform: rotate(45deg);
+    }
+    
+    .line-2 {
+      bottom: 30%;
+      right: 20%;
+      width: 150px;
+      height: 2px;
+      transform: rotate(-30deg);
+    }
+  </style>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg">
-  <div class="container-fluid">
-    <a class="navbar-brand nav-text" style="font-family: 'Wittgenstein'; font-size: 22px; "  href="#">Portfolio</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-microchip"></i> Pavan Kumar Madeti
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
       </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#home">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="MadetPavanKumar_resume_ATS_friendly.pdf" onclick="confirmDownload(event)">Resume</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#home">Home</a>
           </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#service">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#skills">Skills</a>
-        </li>
-        <li class="nav-item">
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#skills">Skills</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#projects">Projects</a>
           </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li> -->
-      </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
-<div class="container" id="home">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="text-content">
-                <h2 style="color: rgb(41, 212, 107); font-family:'Press Start 2P';">About Me</h2>
-                <p>Hello! I'm Pavan Kumar Madeti, an Electronics and Communication Engineering student with a deep passion for embedded systems and electronics. Currently in my second year at GMRIT, I have honed my skills in microcontroller programming, embedded C, and various development platforms such as Arduino, ESP32, and PIC16F877a. My expertise extends to designing and integrating electronic components, sensors, and control systems in innovative projects.</p>
+  </nav>
 
-                <p>With a strong foundation in programming languages like Java, Python, and JavaScript, I am also proficient in web development, creating responsive and visually appealing web applications. I have experience working with Firebase for authentication and data management, and I enjoy bridging the gap between hardware and software in IoT projects.</p>
-                    
-                <p>Driven by curiosity and a love for problem-solving, I am constantly exploring new technologies and expanding my knowledge in the field of embedded systems. Whether it's building an RFID-based payment system or developing a user-friendly web interface, I am dedicated to creating impactful solutions that merge electronics with software. </p>
-                    
-                <p> As I continue to pursue my studies and work on various projects, my goal is to contribute to innovative developments in embedded systems and electronics, making technology more accessible and efficient for everyday applications.</p>
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="particles" id="particles"></div>
+    <div class="circuit-board"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="iot-device iot-device-1">
+      <i class="fas fa-microchip"></i>
+    </div>
+    <div class="iot-device iot-device-2">
+      <i class="fas fa-satellite-dish"></i>
+    </div>
+    <div class="connection-line line-1"></div>
+    <div class="connection-line line-2"></div>
+    
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 hero-content" data-aos="fade-right">
+          <h1 class="hero-title">IoT & Embedded Systems Engineer</h1>
+          <p class="hero-subtitle">Building smart solutions that bridge the physical and digital worlds</p>
+          <div class="d-flex gap-3 mt-4">
+            <a href="#contact" class="btn btn-primary-custom">Get In Touch</a>
+            <a href="#projects" class="btn btn-outline-custom">View My Work</a>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="hero-image">
+            <img src="https://res.cloudinary.com/dudz8iroq/image/upload/v1698146116/my_website/IMG_6950-01-02_j6s6if.jpg" alt="Pavan Kumar Madeti" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">About Me</h2>
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="about-content">
+            <p>Hello! I'm <strong>Pavan Kumar Madeti</strong>, an Electronics and Communication Engineering student with a deep passion for embedded systems and electronics. Currently in my second year at GMRIT, I have honed my skills in microcontroller programming, embedded C, and various development platforms such as Arduino, ESP32, and PIC16F877a.</p>
+            
+            <p>My expertise extends to designing and integrating electronic components, sensors, and control systems in innovative projects. With a strong foundation in programming languages like Java, Python, and JavaScript, I am also proficient in web development, creating responsive and visually appealing web applications.</p>
+            
+            <p>I have experience working with Firebase for authentication and data management, and I enjoy bridging the gap between hardware and software in IoT projects. Driven by curiosity and a love for problem-solving, I am constantly exploring new technologies and expanding my knowledge in the field of embedded systems.</p>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="about-content">
+            <p>Whether it's building an RFID-based payment system or developing a user-friendly web interface, I am dedicated to creating impactful solutions that merge electronics with software.</p>
+            
+            <p>As I continue to pursue my studies and work on various projects, my goal is to contribute to innovative developments in embedded systems and electronics, making technology more accessible and efficient for everyday applications.</p>
+            
+            <h4 class="mt-4 mb-3">Technical Skills:</h4>
+            <div>
+              <span class="skill-badge">Embedded C</span>
+              <span class="skill-badge">Arduino</span>
+              <span class="skill-badge">ESP32</span>
+              <span class="skill-badge">PIC Microcontrollers</span>
+              <span class="skill-badge">IoT</span>
+              <span class="skill-badge">Python</span>
+              <span class="skill-badge">Java</span>
+              <span class="skill-badge">JavaScript</span>
+              <span class="skill-badge">HTML/CSS</span>
+              <span class="skill-badge">Firebase</span>
+              <span class="skill-badge">Blynk</span>
+              <span class="skill-badge">ThingSpeak</span>
+              <span class="skill-badge">Sensor Integration</span>
+              <span class="skill-badge">Electronics Design</span>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="image-text-container">
-                <img src=https://res.cloudinary.com/dudz8iroq/image/upload/v1698146116/my_website/IMG_6950-01-02_j6s6if.jpg alt="Your Image">
+            
+            <div class="mt-4">
+              <a href="MadetPavanKumar_resume_ATS_friendly.pdf" class="btn btn-primary-custom" onclick="confirmDownload(event)">
+                <i class="fas fa-download me-2"></i> Download Resume
+              </a>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<br><br><br><br>
-<div class="container services-section" id="service">
-    <h1>OUR SERVICES</h1>
-    <div class="services-container">
-        <div class="service-card">
-            <h2>Arduino Projects</h2>
-            <img src="https://res.cloudinary.com/dudz8iroq/image/upload/v1698245703/NicePng_arduino-png_2079534_xu7tod.png" alt="Arduino Projects">
-            <p>All Arduino projects are done at low prices. Special discounts for final year students.</p>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">My Services</h2>
+      <div class="row">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-microchip"></i>
+            </div>
+            <h3 class="service-title">Embedded Systems Development</h3>
+            <p class="service-description">Custom embedded solutions using Arduino, ESP32, PIC microcontrollers and other platforms for your specific needs.</p>
+            <div class="service-tags">
+              <span class="badge bg-dark">C/C++</span>
+              <span class="badge bg-dark">Arduino</span>
+              <span class="badge bg-dark">Microcontrollers</span>
+            </div>
+          </div>
         </div>
-        <div class="service-card">
-            <h2>Node-MCU Projects</h2>
-            <img src="https://res.cloudinary.com/dudz8iroq/image/upload/v1698246414/kisspng-microcontroller-esp8266-electronics-esp32-nodemcu-5bf4674e00c841.5045861815427438860032_bvw5wl.png" alt="Node-MCU Projects">
-            <p>All Node-MCU projects are done at low prices. Special discounts for final year students.</p>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3 class="service-title">IoT Solutions</h3>
+            <p class="service-description">Design and implementation of Internet of Things systems with cloud connectivity and remote monitoring capabilities.</p>
+            <div class="service-tags">
+              <span class="badge bg-dark">NodeMCU</span>
+              <span class="badge bg-dark">MQTT</span>
+              <span class="badge bg-dark">Cloud</span>
+              <span class="badge bg-dark">Firebase</span>
+              <span class="badge bg-dark">Blynk</span>
+              <span class="badge bg-dark">ThingSpeak</span>
+            </div>
+          </div>
         </div>
-        <div class="service-card">
-            <h2>IoT Projects</h2>
-            <img src="https://res.cloudinary.com/dudz8iroq/image/upload/v1698246608/kisspng-vector-graphics-stock-photography-royalty-free-ill-valvenet-technologies-5cee13021cda14.7926913315591063061182_cb9pkf.png" alt="IoT Projects">
-            <p>All IoT projects are done at low prices. Special discounts for final year students.</p>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3 class="service-title">Web Development</h3>
+            <p class="service-description">Building responsive and interactive web applications with modern frameworks and technologies.</p>
+            <div class="service-tags">
+              <span class="badge bg-dark">HTML/CSS</span>
+              <span class="badge bg-dark">JavaScript</span>
+              <span class="badge bg-dark">Bootstrap</span>
+            </div>
+          </div>
         </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h3 class="service-title">Automation Systems</h3>
+            <p class="service-description">Design and implementation of automated control systems for home, industrial, or commercial applications.</p>
+            <div class="service-tags">
+              <span class="badge bg-dark">Micro-Controllers</span>
+              <span class="badge bg-dark">Sensors</span>
+              <span class="badge bg-dark">Actuators</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-project-diagram"></i>
+            </div>
+            <h3 class="service-title">Project Consulting</h3>
+            <p class="service-description">Expert guidance for your electronics and embedded systems projects from concept to completion.</p>
+            <div class="service-tags">
+              <span class="badge bg-dark">Design</span>
+              <span class="badge bg-dark">Implementation</span>
+              <span class="badge bg-dark">Testing</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3 class="service-title">Academic Projects</h3>
+            <p class="service-description">Specialized support for student projects with documentation and implementation assistance.</p>
+            <div class="service-tags">
+              <span class="badge bg-dark">Documentation</span>
+              <span class="badge bg-dark">Prototyping</span>
+              <span class="badge bg-dark">Support</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-<br><br><br><br>
-<div class="container skills-section" id="skills">
-    <h1>MY SKILLS</h1>
-    <div class="skills-container">
-        <!-- Skill Cards -->
-        <div class="skill-card">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
-            <h2>HTML</h2>
-            <p>(Advanced)</p>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">My Skills</h2>
+      
+      <div class="skill-category" data-aos="fade-up">
+        <h3 class="skill-category-title">Embedded Systems</h3>
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="Embedded C">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">Embedded C</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 90%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Arduino_Logo.svg" alt="Arduino">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">Arduino</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 85%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Espressif_Logo.svg" alt="ESP32">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">ESP32</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 80%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://www.microchip.com/_images/ics/Microchip-Logo.png" alt="PIC Microcontrollers">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">PIC Microcontrollers</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 75%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/3713/3713996.png" alt="IoT">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">IoT Development</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 80%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/2933/2933245.png" alt="Sensor Integration">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">Sensor Integration</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 85%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="skill-card">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
-            <h2>CSS</h2>
-            <p>(Advanced)</p>
+      </div>
+      
+      <div class="skill-category" data-aos="fade-up">
+        <h3 class="skill-category-title">Programming Languages</h3>
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">Python</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 75%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">Java</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 70%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">JavaScript</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 75%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="skill-card">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
-            <h2>JavaScript</h2>
-            <p>(Intermediate)</p>
+      </div>
+      
+      <div class="skill-category" data-aos="fade-up">
+        <h3 class="skill-category-title">Web Development</h3>
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">HTML5</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 85%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">CSS3</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 80%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">Bootstrap</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 80%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="skill-card">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
-            <h2>Java</h2>
-            <p>(Intermediate)</p>
+      </div>
+      
+      <div class="skill-category" data-aos="fade-up">
+        <h3 class="skill-category-title">Other Skills</h3>
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">Firebase</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 70%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Microsoft Office">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">Microsoft Office</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 90%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/2906/2906274.png" alt="PCB Design">
+              </div>
+              <div class="skill-details">
+                <h4 class="skill-name">PCB Design</h4>
+                <div class="skill-level">
+                  <div class="skill-level-bar" style="width: 65%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="skill-card">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
-            <h2>Python</h2>
-            <p>(Skilled)</p>
-        </div>
-        <div class="skill-card">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="Embedded C" />
-            <h2>Embedded C</h2>
-            <p>(Advanced)</p>
-        </div>
-        <div class="skill-card">
-            <img src="https://tse3.mm.bing.net/th?id=OIP.OdLj6xUrwUyAGnALzyROyAAAAA&pid=Api&P=0&h=220" alt="MPLABX IDE" />
-            <h2>MPLABX IDE</h2>
-            <p>(Skilled)</p>
-        </div>
-        <div class="skill-card-m">
-            <img src="https://reversepcb.com/wp-content/uploads/2022/12/STM32-program.jpg" alt="Microcontrollers" />
-            <h2>Microcontrollers Programming</h2>
-            <p>(Advanced)</p>
-        </div>
-        <div class="skill-card-m">
-            <img src="https://tse4.mm.bing.net/th?id=OIP.LVHisBRCkwS0ubt91IZRYQHaGa&pid=Api&P=0&h=220" alt="Embedded Systems Development" />
-            <h2>Embedded Systems Development</h2>
-            <p>(Intermediate)</p>
-        </div>
-        <div class="skill-card-m">
-            <img src="https://tse1.mm.bing.net/th?id=OIF.ylcNtj5cGlZMErD7xlJAZQ&pid=Api&P=0&h=220" alt="Embedded Systems Development" />
-            <h2>IoT (Internet of Things)</h2>
-            <p>(Skilled)</p>
-        </div>
-        <div class="skill-card-m">
-            <img src="https://tse4.mm.bing.net/th?id=OIP.6tykwkmC-_zIYAyaqZ19rgHaHa&pid=Api&P=0&h=220" alt="Embedded Systems Development" />
-            <h2>Sensor Integration</h2>
-        </div>
-        <div class="skill-card-m">
-            <img src="https://tse4.mm.bing.net/th?id=OIP.wN3s3J6NC9lshoGX1TYaZwHaE6&pid=Api&P=0&h=220" alt="Embedded Systems Development" />
-            <h2>Electronics Design</h2>
-            <p>(Intermediate)</p>
-        </div>
-        <div class="skill-card-m">
-            <img src="https://www.sudostaff.com/wp-content/uploads/2020/06/Office_logos.jpg" alt="Embedded Systems Development" />
-            <h2>Microsoft office</h2>
-            <p>(Professional)</p>
-        </div>
+      </div>
     </div>
-</div>
-<br><br><br><br>
-<section id="projects">
-    <h2>Projects</h2>
+  </section>
 
-    <div class="projects-container">
-        <!-- Project Card 1 -->
-        <div class="project-card">
-            <h3>Home Monitering System</h3>
-            <p>Click here to know more details of the project.</p>
-            <a href="project1.html" target="_blank" class="project-link">View Project</a>
-            <a href="https://pavan-1522.github.io/home-monitering_system/" class="project-link">Visit Website</a>
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">My Projects</h2>
+      <div class="row">
+        <!-- Project 1 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="#" alt="Home Monitoring System">
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Home Monitoring System</h3>
+              <p class="project-description">An IoT-based system that monitors home environment parameters like temperature, humidity, and security with real-time alerts.</p>
+              <div class="project-tags">
+                <span class="project-tag">IoT</span>
+                <span class="project-tag">ESP32</span>
+                <span class="project-tag">Firebase</span>
+              </div>
+              <div class="project-links">
+                <a href="project1.html" target="_blank"><i class="fas fa-external-link-alt"></i> View Details</a>
+                <a href="https://pavan-1522.github.io/home-monitering_system/" target="_blank"><i class="fas fa-globe"></i> Live Demo</a>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <!-- Project Card 2 -->
-        <div class="project-card">
-            <h3>Contact-Less Payment System</h3>
-            <p>Click here to know more details of the project.</p>
-            <a href="project2.html" class="project-link">View Project</a>
-            <a href="https://pavan-1522.github.io/invoiceElegets/index.html" class="project-link">Visit Website</a>
+        
+        <!-- Project 2 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="#" alt="Contactless Payment System">
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Contactless Payment System</h3>
+              <p class="project-description">RFID-based payment solution with secure authentication and transaction logging for cashless payments.</p>
+              <div class="project-tags">
+                <span class="project-tag">RFID</span>
+                <span class="project-tag">Arduino</span>
+                <span class="project-tag">Web Interface</span>
+              </div>
+              <div class="project-links">
+                <a href="project2.html"><i class="fas fa-external-link-alt"></i> View Details</a>
+                <a href="https://pavan-1522.github.io/invoiceElegets/index.html" target="_blank"><i class="fas fa-globe"></i> Live Demo</a>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <!-- Project Card 3 -->
-        <div class="project-card">
-            <h3>EleGets-Electronics (StartUP)</h3>
-            <p>Click here to know more details of the project.</p>
-            <a href="error.html" class="project-link">View Project</a>
-            <a href="error.html" class="project-link">Download App</a>
+        
+        <!-- Project 3 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="#" alt="EleGets Electronics">
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">EleGets Electronics</h3>
+              <p class="project-description">A startup platform for electronics enthusiasts with tutorials, project ideas, and e-commerce functionality.</p>
+              <div class="project-tags">
+                <span class="project-tag">Web Development</span>
+                <span class="project-tag">E-commerce</span>
+                <span class="project-tag">Education</span>
+              </div>
+              <div class="project-links">
+                <a href="error.html"><i class="fas fa-external-link-alt"></i> View Details</a>
+                <a href="error.html"><i class="fas fa-mobile-alt"></i> App Demo</a>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <!-- Project Card 4 -->
-        <div class="project-card">
-            <h3>EleGets-Learn </h3>
-            <p>Description of the project.</p>
-            <a href="https://pavan-1522.github.io/elegets-learn/index.html" class="project-link">View Website</a>
+        
+        <!-- Project 4 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="#" alt="EleGets Learn">
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">EleGets Learn</h3>
+              <p class="project-description">An educational platform for electronics and embedded systems with interactive tutorials and simulations.</p>
+              <div class="project-tags">
+                <span class="project-tag">Education</span>
+                <span class="project-tag">Web Development</span>
+                <span class="project-tag">Interactive</span>
+              </div>
+              <div class="project-links">
+                <a href="https://pavan-1522.github.io/elegets-learn/index.html" target="_blank"><i class="fas fa-globe"></i> Visit Website</a>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <!-- Project Card 5 -->
-        <div class="project-card">
-            <h3>Project Title 3</h3>
-            <p>Description of the project.</p>
-            <a href="error.html" class="project-link">View Project</a>
+        
+        <!-- Project 5 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="#" alt="Smart Agriculture System">
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Smart Agriculture System</h3>
+              <p class="project-description">IoT-based solution for monitoring soil conditions and automating irrigation for optimal crop growth.</p>
+              <div class="project-tags">
+                <span class="project-tag">IoT</span>
+                <span class="project-tag">Agriculture</span>
+                <span class="project-tag">Automation</span>
+              </div>
+              <div class="project-links">
+                <a href="error.html"><i class="fas fa-external-link-alt"></i> View Details</a>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <!-- Project Card 6 -->
-        <div class="project-card">
-            <h3>Project Title 3</h3>
-            <p>Description of the project.</p>
-            <a href="error.html" class="project-link">View Project</a>
+        
+        <!-- Project 6 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="#" alt="Industrial Monitoring System">
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Industrial Monitoring System</h3>
+              <p class="project-description">Real-time monitoring solution for industrial equipment with predictive maintenance capabilities.</p>
+              <div class="project-tags">
+                <span class="project-tag">Industry 4.0</span>
+                <span class="project-tag">Predictive Maintenance</span>
+                <span class="project-tag">Data Analytics</span>
+              </div>
+              <div class="project-links">
+                <a href="error.html"><i class="fas fa-external-link-alt"></i> View Details</a>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <!-- Repeat for more project cards -->
+      </div>
     </div>
-</section>
-<br><br><br><br>
-<footer id="foot">
-    <div class="footer-content">
-        <div class="footer-left footer-section">
-            <h3>Contact Information</h3>
-            <p>Email: pavankumarmadeti143@gmail.com</p>
-            <p>Phone: +1234567890</p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+      <div class="row">
+        <div class="col-lg-5" data-aos="fade-right">
+          <div class="contact-info">
+            <h3 class="mb-4">Contact Information</h3>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-text">
+                <p>Email</p>
+                <a href="mailto:pavankumarmadeti143@gmail.com">pavankumarmadeti143@gmail.com</a>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-text">
+                <p>Phone</p>
+                <a href="tel:+1234567890">+91 1234567890</a>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-text">
+                <p>Location</p>
+                <span>GMRIT, Rajam, Andhra Pradesh, India</span>
+              </div>
+            </div>
+            
+            <div class="social-links mt-5">
+              <a href="https://www.instagram.com/its___me.___pavan.__/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.youtube.com/channel/UCMHiDi5iBOpk6MvHXKahYRg" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+              <a href="https://www.linkedin.com/in/pavan-kumar-madeti-029135217/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="https://github.com/Pavan-1522" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
         </div>
-        <div class="footer-center footer-section">
-            <h3>Quick Links</h3>
+        <div class="col-lg-7" data-aos="fade-left">
+          <form id="contactForm" class="mt-4 mt-lg-0">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" id="message" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary-custom">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <a href="#" class="footer-logo"><i class="fas fa-microchip"></i> Pavan Kumar Madeti</a>
+          <p class="footer-about">Electronics and Communication Engineering student specializing in embedded systems and IoT solutions.</p>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <div class="footer-links">
+            <h5>Quick Links</h5>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
+          </div>
         </div>
-        <div class="footer-right footer-section">
-            <h3>Follow Us</h3>
-            <div class="social-icons">
-                <a href="https://www.instagram.com/its___me.___pavan.__/" target="_blank" title="Instagram"><i class="fa fa-instagram insta"></i><span>Instagram</span></a>
-                <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook face"></i><span>Facebook</span></a>
-                <a href="https://www.youtube.com/channel/UCMHiDi5iBOpk6MvHXKahYRg" target="_blank" title="YouTube" >
-                    <i class="fa fa-youtube you"></i><span>YouTube</span>
-                </a>
-                <a href="https://www.linkedin.com/in/pavan-kumar-madeti-029135217/" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i><span class="link">LinkedIn</span></a>
-                <a href="https://github.com/Pavan-1522" target="_blank" title="GitHub"><i class="fa fa-github git"></i><span>GitHub</span></a>
-            </div>
+        <div class="col-lg-3 col-md-4">
+          <div class="footer-links">
+            <h5>Services</h5>
+            <ul>
+              <li><a href="#services">Embedded Systems</a></li>
+              <li><a href="#services">IoT Solutions</a></li>
+              <li><a href="#services">Web Development</a></li>
+              <li><a href="#services">Project Consulting</a></li>
+              <li><a href="#services">Academic Projects</a></li>
+            </ul>
+          </div>
         </div>
+        <div class="col-lg-3 col-md-4">
+          <div class="footer-links">
+            <h5>Contact</h5>
+            <ul>
+              <li><a href="mailto:pavankumarmadeti143@gmail.com">pavankumarmadeti143@gmail.com</a></li>
+              <li><a href="tel:+1234567890">+91 1234567890</a></li>
+              <li>GMRIT, Rajam, AP, India</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2024 Pavan Kumar Madeti. All Rights Reserved.</p>
+      </div>
     </div>
-    <div class="footer-bottom">
-        <p>&copy; 2024 Madeti Pavan Kumar. All rights reserved.</p>
-    </div>
-</footer>
+  </footer>
 
+  <!-- Back to Top Button -->
+  <a href="#home" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script> -->
-
+  <!-- JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <script>
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+    
+    // Navbar scroll effect
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > 100) {
+        $('.navbar').addClass('scrolled');
+      } else {
+        $('.navbar').removeClass('scrolled');
+      }
+      
+      // Back to top button
+      if ($(this).scrollTop() > 300) {
+        $('.back-to-top').addClass('active');
+      } else {
+        $('.back-to-top').removeClass('active');
+      }
+    });
+    
+    // Smooth scrolling for navigation links
+    $('a[href*="#"]').on('click', function(e) {
+      e.preventDefault();
+      
+      $('html, body').animate(
+        {
+          scrollTop: $($(this).attr('href')).offset().top - 70,
+        },
+        500,
+        'linear'
+      );
+    });
+    
+    // Back to top button
+    $('.back-to-top').on('click', function(e) {
+      e.preventDefault();
+      $('html, body').animate({scrollTop: 0}, '300');
+    });
+    
+    // Create particles for hero section
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random size between 2px and 6px
+        const size = Math.random() * 4 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Random position
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // Random animation duration between 10s and 20s
+        const duration = Math.random() * 10 + 10;
+        particle.style.animationDuration = `${duration}s`;
+        
+        // Random delay
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+    
+    // Call the function when the page loads
+    window.addEventListener('load', createParticles);
+    
+    // Form submission
+    $('#contactForm').on('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! I will get back to you soon.');
+      this.reset();
+    });
+    
+    // Resume download confirmation
+    function confirmDownload(event) {
+      event.preventDefault();
+      if (confirm("Do you want to download the resume?")) {
+        var link = document.createElement('a');
+        link.href = event.target.href;
+        link.download = event.target.href.split('/').pop();
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
+  </script>
 </body>
 </html>
