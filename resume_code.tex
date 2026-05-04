@@ -1,6 +1,6 @@
 %-------------------------
 % ATS-Optimized Resume in LaTeX
-% Madeti Pavan Kumar | IoT & Embedded Systems Engineer
+% Madeti Pavan Kumar | Embedded Firmware Engineer Intern
 % Compile with: pdflatex or xelatex
 %-------------------------
 
@@ -21,14 +21,12 @@
 \usepackage[T1]{fontenc}
 \input{glyphtounicode}
 
-% Page style
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Margins -- 0.5in all sides
 \usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in]{geometry}
 
 \urlstyle{same}
@@ -36,14 +34,11 @@
 \raggedright
 \setlength{\tabcolsep}{0in}
 
-% Section formatting
 \titleformat{\section}{
   \vspace{-6pt}\scshape\raggedright\large\bfseries
 }{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
 
 \pdfgentounicode=1
-
-%--------- CUSTOM COMMANDS ---------
 
 \newcommand{\resumeItem}[1]{
   \item\small{#1 \vspace{-1pt}}
@@ -82,7 +77,7 @@
     Vizianagaram, Andhra Pradesh \textbar{}
     \faPhone\ 6302085024 \textbar{}
     \href{mailto:madetipavankumar9@gmail.com}{\faEnvelope\ \underline{madetipavankumar9@gmail.com}} \textbar{}
-    \href{https://linkedin.com/in/pavankumarmadeti}{\faLinkedin\ \underline{linkedin.com/in/pavankumarmadeti}} \textbar{} 
+    \href{https://linkedin.com/in/pavankumarmadeti}{\faLinkedin\ \underline{linkedin.com/in/pavankumarmadeti}} \textbar{}
     \href{https://github.com/Pavan-1522}{\faGithub\ \underline{github.com/Pavan-1522}}
 \end{center}
 
@@ -92,7 +87,7 @@
 \section{Professional Summary}
 \resumeSubHeadingListStart
 \item\small{
-Dynamic \textbf{IoT \& Embedded Systems Engineer} with hands-on expertise delivering \textbf{50+ commercial automation projects}. Skilled in rapid prototyping, PCB design, and cloud integration, with a growing focus on automotive-grade systems (\textbf{QNX RTOS}, \textbf{CAN Bus}) to solve real-world problems at scale.
+ECE undergraduate (B.Tech, 3rd Year) skilled in \textbf{C/Embedded C} firmware development, microcontroller programming (\textbf{ESP32, STM32}), and embedded protocols (\textbf{UART, SPI, I2C, CAN Bus}). Experienced in hardware debugging, peripheral interfacing, and real-time systems across 50+ projects. Currently learning \textbf{FreeRTOS}. Available for full-time onsite internship.
 }
 \resumeSubHeadingListEnd
 
@@ -101,15 +96,28 @@ Dynamic \textbf{IoT \& Embedded Systems Engineer} with hands-on expertise delive
 %-----------EDUCATION-----------
 \section{Education}
 \resumeSubHeadingListStart
-
   \resumeSubheading
     {GMR Institute of Technology (GMRIT)}{Expected May 2027}
-    {Bachelor of Technology (B.Tech) -- Electronics and Communication Engineering (ECE)}{Rajam, Andhra Pradesh}
-
+    {B.Tech -- Electronics and Communication Engineering}{Rajam, Andhra Pradesh}
   \resumeSubheading
     {Chaitanya Engineering College}{2021 -- 2024}
-    {Diploma in Electronics and Communication Engineering (ECE)}{Visakhapatnam (Kommadi), Andhra Pradesh}
+    {Diploma -- Electronics and Communication Engineering}{Visakhapatnam, Andhra Pradesh}
+\resumeSubHeadingListEnd
 
+\vspace{-6pt}
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+\resumeSubHeadingListStart
+\item \small{
+  \textbf{Languages:} C \textbf{(Primary)}, Embedded C \textbf{(Primary)}, C++ \textit{(learning)}, Python \\[2pt]
+  \textbf{Microcontrollers:} ESP32, ESP8266, STM32, Arduino (Uno/Nano/Mega), Raspberry Pi, PIC16F877A \\[2pt]
+  \textbf{Protocols:} UART, SPI, I2C, CAN Bus, MQTT, Modbus, HTTP/REST \\[2pt]
+  \textbf{RTOS:} FreeRTOS \textit{(learning)}, QNX \textit{(in progress)} \\[2pt]
+  \textbf{Debugging \& Interfacing:} Oscilloscope, Logic Analyzer, Multimeter, GPIO, ADC, PWM, SMT Soldering \\[2pt]
+  \textbf{EDA \& IDEs:} KiCad, Eagle, Arduino IDE, VS Code \\[2pt]
+  \textbf{Tools \& Platforms:} Git/GitHub, Linux, Firebase, Node-RED, Blynk
+}
 \resumeSubHeadingListEnd
 
 \vspace{-6pt}
@@ -119,35 +127,32 @@ Dynamic \textbf{IoT \& Embedded Systems Engineer} with hands-on expertise delive
 \resumeSubHeadingListStart
 
   \resumeSubheading
-    {Freelance IoT \& Embedded Systems Developer}{2023 -- Present}
-    {Independent Consultant -- Hardware \& Firmware Engineering}{Remote / Andhra Pradesh}
-  \resumeItemListStart
-    \resumeItem{Designed and delivered \textbf{50+ end-to-end custom IoT hardware projects} spanning home automation, smart agriculture, and vehicle tracking, managing the full lifecycle from schematic design to PCB fabrication and firmware development.}
-    \resumeItem{Generated \textbf{{\rupee}1,00,000+ in revenue} by successfully commercializing embedded solutions and consulting for engineering clients.}
-  \resumeItemListEnd
-
-  \resumeSubheading
     {RoboCoupler Pvt. Ltd.}{May 2025 -- Present}
-    {Intern -- PCB Design \& IoT Hardware Development}{Visakhapatnam, Andhra Pradesh}
+    {Intern -- Embedded Firmware \& PCB Design}{Visakhapatnam, Andhra Pradesh}
   \resumeItemListStart
-    \resumeItem{Spearheaded design of the \textbf{KIWI Board} -- a custom IoT development board integrating ESP8266, L298N motor driver, and multi-sensor interfaces -- from schematic capture to DFM-ready PCB layout.}
-    \resumeItem{Executed complete PCB design lifecycle using KiCad/Eagle, including component selection, routing, and design rule checks (DRC) to ensure manufacturability.}
-    \resumeItem{Prototyped, debugged, and validated custom IoT firmware, accelerating product development cycles.}
+    \resumeItem{Developed and debugged \textbf{C/Embedded C} firmware for an \textbf{ESP8266}-based custom IoT board; validated \textbf{UART, SPI, I2C} interfaces and motor driver control using oscilloscope and serial monitor.}
+    \resumeItem{Completed PCB design cycle in \textbf{KiCad}: schematic capture, component selection, routing, and DRC verification.}
   \resumeItemListEnd
 
   \resumeSubheading
     {CEMS -- Centre of Excellence in Maritime and Shipbuilding}{June 2025}
-    {Intern -- IIoT and Microcontroller Systems}{Visakhapatnam, Andhra Pradesh}
+    {Intern -- IIoT \& Microcontroller Systems}{Visakhapatnam, Andhra Pradesh}
   \resumeItemListStart
-    \resumeItem{Integrated industrial sensors with \textbf{ESP32/ESP8266} microcontrollers and IIoT platforms (Node-RED, Blynk) to build proof-of-concept remote monitoring and automation prototypes.}
-    \resumeItem{Developed and deployed multiple IIoT prototypes simulating real-world industrial automation scenarios for maritime applications.}
+    \resumeItem{Interfaced industrial sensors with \textbf{ESP32} over \textbf{UART, SPI, I2C}; debugged signal issues using a logic analyzer and deployed monitoring prototypes on Node-RED.}
   \resumeItemListEnd
 
   \resumeSubheading
     {Resolute Sky Quad Electronics}{June 2023 -- Nov 2023}
-    {Production Intern -- PCB Assembly \& Quality Assurance}{Medchal, Hyderabad}
+    {Production Intern -- PCB Assembly \& QA}{Medchal, Hyderabad}
   \resumeItemListStart
-    \resumeItem{Performed SMT component placement, fine-pitch soldering, and QA testing for \textbf{Fire-Boltt smartwatches}, maintaining strict ESD protocols to measurably reduce manufacturing defect rates.}
+    \resumeItem{Performed SMT assembly, soldering, and functional QA for \textbf{Fire-Boltt smartwatches} under ESD-controlled production conditions.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {Freelance Embedded Systems Developer}{2023 -- Present}
+    {Independent -- Firmware \& Hardware Engineering}{Remote / Andhra Pradesh}
+  \resumeItemListStart
+    \resumeItem{Independently built \textbf{50+ embedded and IoT projects} spanning firmware development, hardware debugging, and PCB design across home automation, agriculture, and vehicle tracking domains.}
   \resumeItemListEnd
 
 \resumeSubHeadingListEnd
@@ -156,69 +161,48 @@ Dynamic \textbf{IoT \& Embedded Systems Engineer} with hands-on expertise delive
 
 %-----------KEY PROJECTS-----------
 \section{Key Projects}
-
 \resumeSubHeadingListStart
 
   \resumeProjectHeading
-    {\textbf{Smart Bus Pass Verification System (APSRTC)} $|$ \emph{ESP32, RFID, Firebase, JavaScript} $|$ \textbf{\color{black}[\faFileAlt~Patent Filed]}}{2024 -- Present}
+    {\textbf{Smart Bus Pass Verification System} $|$ \emph{ESP32, RFID, Embedded C, Firebase, HTTP/REST} $|$ \textbf{[\faFileAlt~Patent Filed]}}{2024 -- Present}
   \resumeItemListStart
-    \resumeItem{\textbf{Situation:} Manual bus pass verification at APSRTC checkpoints was slow, error-prone, and offered no real-time transaction visibility.}
-    \resumeItem{\textbf{Task/Action:} Engineered a fully automated RFID-based verification system using ESP32, with real-time balance display on an onboard LCD and a live data pipeline to Firebase Realtime Database and Google Sheets.}
-    \resumeItem{\textbf{Result:} Eliminated manual processing delays; system showcased at \textbf{multiple technical symposiums}, winning \textbf{multiple 1st-place prizes} for innovation. \textbf{Patent application filed} for the core system architecture.}
+    \resumeItem{Wrote \textbf{Embedded C} firmware on \textbf{ESP32} for real-time RFID tag reads, LCD output, and live Firebase sync over \textbf{HTTP/REST}.}
+    \resumeItem{Resolved hardware-software integration bugs during field testing; won \textbf{multiple 1st-place prizes} at national symposiums.}
   \resumeItemListEnd
 
   \resumeProjectHeading
-    {\textbf{Predictive Cold Chain Monitoring System} $|$ \emph{ESP32, GPS, MQTT, Blockchain, Python}}{2024}
+    {\textbf{Predictive Cold Chain Monitoring System} $|$ \emph{ESP32, MQTT, UART, I2C, GPS, Python}}{2024}
   \resumeItemListStart
-    \resumeItem{Developed an advanced IIoT system for monitoring critical medical supplies in transit, tracking \textbf{real-time temperature, humidity, vibration, and GPS coordinates} via a live hospital-facing dashboard.}
-    \resumeItem{Implemented \textbf{predictive maintenance algorithms} to forecast AC cooling unit failures by analyzing power consumption metrics, enabling proactive intervention before spoilage occurs.}
-    \resumeItem{Architected a \textbf{blockchain-secured data layer} to store immutable transit records, providing verified, tamper-proof medicine status to receiving hospitals and ensuring supply chain transparency.}
+    \resumeItem{Programmed \textbf{ESP32} to acquire temperature, humidity, vibration, and GPS data via \textbf{I2C/UART} and publish over \textbf{MQTT} to a real-time dashboard.}
+    \resumeItem{Implemented power-consumption anomaly detection to predict cooling unit failures proactively.}
   \resumeItemListEnd
 
   \resumeProjectHeading
-    {\textbf{Automated UPI Pad Dispensing System} $|$ \emph{ESP32, UPI Payment API, Servo/Stepper Motor}}{2024}
+    {\textbf{Automated UPI Pad Dispensing System} $|$ \emph{ESP32, HTTP, Stepper Motor, Servo, Embedded C}}{2024}
   \resumeItemListStart
-    \resumeItem{Engineered a smart, unattended sanitary pad dispenser integrated with \textbf{UPI mobile payment} infrastructure for fully automated, cashless dispensing -- improving accessibility in public and institutional spaces.}
-    \resumeItem{Designed the embedded firmware to validate UPI payment confirmation callbacks and trigger the mechanical dispensing mechanism in real time.}
+    \resumeItem{Developed firmware to parse \textbf{UPI payment callbacks} via HTTP and actuate a stepper/servo dispenser in real time; debugged motor timing and payment-trigger latency issues.}
   \resumeItemListEnd
 
   \resumeProjectHeading
-    {\textbf{Smart Home Automation via Cloud} $|$ \emph{ESP32, Firebase, HTML, JavaScript}}{2023}
+    {\textbf{Smart Home Automation via Cloud} $|$ \emph{ESP32, Firebase, GPIO, Embedded C}}{2023}
   \resumeItemListStart
-    \resumeItem{Built a scalable cloud-connected home automation platform enabling remote appliance control and real-time status monitoring through a custom web interface backed by Firebase Realtime Database.}
+    \resumeItem{Built \textbf{ESP32} firmware for cloud-driven \textbf{GPIO} control of appliances with real-time feedback via \textbf{Firebase Realtime Database}.}
   \resumeItemListEnd
 
 \resumeSubHeadingListEnd
 
-% ---- Other Notable Projects ----
 \vspace{-8pt}
-\textbf{\small Other Notable Projects:} \small Smart Energy Meter (IoT power analytics), Smart Farm Monitoring Robot (autonomous field robot), Vehicle Monitoring System (GPS + OBD telematics), Smart Toll Gate System (RFID automated toll). \textit{50+ total projects delivered.}
+\textbf{\small Other Projects:} \small Smart Energy Meter, Autonomous Farm Robot, Vehicle Monitoring (GPS + OBD), RFID Toll Gate. \textit{50+ total embedded projects delivered.}
 
 \vspace{-2pt}
-
-%-----------TECHNICAL SKILLS-----------
-\section{Technical Skills}
-\resumeSubHeadingListStart
-\item \small{
-  \textbf{Core Competencies:} IoT System Design, Embedded Systems, Industrial Automation, Predictive Maintenance, RFID/NFC Integration, PCB Design, Rapid Hardware Prototyping, Blockchain Data Security \\[2pt]
-  \textbf{Microcontrollers \& SBCs:} ESP32, ESP8266, Arduino (Uno/Nano/Mega), STM32, Raspberry Pi, AT89S52, PIC16F877A \\[2pt]
-  \textbf{Protocols \& RTOS:} MQTT, Modbus, CAN Bus, HTTP/REST, I2C, SPI, UART, QNX RTOS \textit{(in progress)} \\[2pt]
-  \textbf{Cloud \& IoT Platforms:} Firebase Realtime Database, Google Sheets API, Blynk, ThingSpeak, Node-RED \\[2pt]
-  \textbf{Languages \& Tools:} C, Embedded C, Python, JavaScript, HTML/CSS, Java \\[2pt]
-  \textbf{Hardware \& EDA Tools:} KiCad, Eagle, Arduino IDE, VS Code, SMT Soldering, Oscilloscope, Signal Analyzer \\[2pt]
-  \textbf{OS \& Platforms:} Linux (Ubuntu), GitHub, Node-RED
-}
-\resumeSubHeadingListEnd
-
-\vspace{-6pt}
 
 %-----------LEADERSHIP & ACHIEVEMENTS-----------
 \section{Leadership \& Achievements}
 \begin{itemize}[leftmargin=0.2in, itemsep=2pt, parsep=0pt, topsep=2pt]
-  \resumeItem{\textbf{Club Coordinator} (ISTE \& Robotics Club, GMRIT): Managed \textbf{10+ volunteers}, mentored \textbf{15+ juniors} in hardware design, and organized \textbf{5+ technical workshops} reaching over \textbf{200 students} (2023 -- Present).}
-  \resumeItem{\textbf{Patent Filed:} Core system architecture for the Smart Bus Pass Verification System (APSRTC).}
-  \resumeItem{\textbf{1st Prize ({\rupee}10,000 Award):} STEPCONE 2025, GMRIT National Level Tech Fest (out of 50+ teams).}
-  \resumeItem{\textbf{1st Prize Wins:} JNTUK Robotics Workshop \& Chaitanya Engineering College Technical Events.}
+  \resumeItem{\textbf{Club Coordinator} (ISTE \& Robotics Club, GMRIT): Ran 5+ workshops for 200+ students; mentored 15+ juniors in embedded hardware and firmware (2023 -- Present).}
+  \resumeItem{\textbf{Patent Filed:} RFID-based Smart Bus Pass Verification System (ESP32 + Firebase architecture).}
+  \resumeItem{\textbf{1st Prize -- {\rupee}10,000:} STEPCONE 2025, GMRIT National Tech Fest (50+ teams).}
+  \resumeItem{\textbf{1st Prize:} JNTUK Robotics Workshop \& Chaitanya Engineering College Technical Fest.}
 \end{itemize}
 
 \end{document}
